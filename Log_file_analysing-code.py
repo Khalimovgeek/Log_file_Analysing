@@ -51,7 +51,7 @@ print(f"\nMost Frequently Accessed Endpoint:\n{most_accessed}: Accessed {path_co
 flagged = {ip: count for ip, count in suspicious_ips.items() if count > threshold}
 print("\nSuspicious Activity Detected:")
 if flagged:
-    print(tabulate([["IP Address", "Failed Attempts"]] + sort_dict(flagged), headers="firstrow", tablefmt="grid"))
+    print(tabulate([["IP Address", "Failed Login Attempts"]] + sort_dict(flagged), headers="firstrow", tablefmt="grid"))
 else:
     print("No IPs flagged above the threshold.")
 
@@ -67,11 +67,11 @@ with open("log_analysis_results.csv", "w", newline="") as csvfile:
     writer.writerow([])  # Blank line
     
     # Save most accessed endpoint
-    writer.writerow(["Most Frequently Accessed Endpoint", most_accessed, path_counts[most_accessed]])
-    
+    writer.writerow(["Most Frequently Accessed Endpoint"])
+    writer.writerow ([most_accessed, path_counts[most_accessed]])  
     writer.writerow([])  # Blank line
     
     # Save suspicious activity
     writer.writerow(["Suspicious IPs"])
-    writer.writerow(["IP Address", "Failed Attempts"])
+    writer.writerow(["IP Address", "Failed Login Attempts"])
     writer.writerows(sort_dict(flagged))
