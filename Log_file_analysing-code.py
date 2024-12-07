@@ -11,7 +11,8 @@ def sort_dict(data, reverse=True):
 
 # Input file path and threshold
 log_path = input("Enter the path to the log file: ")
-threshold = int(input("Enter the suspicious activity threshold: "))
+threshold_input = input("Enter the flagging threshold (default is 10): ")
+threshold = int(threshold_input) if threshold_input.strip() else 10
 
 # Dictionaries for analysis
 request_counts = {}
